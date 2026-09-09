@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Duitku — Catat Keuangan & Tagih Hutang Lewat WhatsApp</title>
+<meta name="description" content="Duitku mencatat pemasukan, pengeluaran, dan siapa saja yang berhutang padamu — lalu menyiapkan pesan penagihannya di WhatsApp. Tanpa akun, tanpa server, data 100% di perangkatmu.">
+<meta name="theme-color" content="#12996B">
+<link rel="icon" href="img/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="img/icon-512.png">
+<link rel="canonical" href="https://strongerev.github.io/lpduitku/">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="id_ID">
+<meta property="og:site_name" content="Duitku">
+<meta property="og:title" content="Duitku — Catat Keuangan & Tagih Hutang Lewat WhatsApp">
+<meta property="og:description" content="Catat pemasukan, pengeluaran, dan hutang piutang. Menagih cukup satu tombol: WhatsApp terbuka dengan pesan yang sudah lengkap.">
+<meta property="og:image" content="img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Duitku — Catat Keuangan & Tagih Hutang Lewat WhatsApp">
+<meta name="twitter:description" content="Catat pemasukan, pengeluaran, dan hutang piutang. Menagih cukup satu tombol: WhatsApp terbuka dengan pesan yang sudah lengkap.">
+<meta name="twitter:image" content="img/og.png">
+
+<link rel="preload" href="fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/style.css">
+<script>document.documentElement.className += " js";</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Duitku",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Android, Web",
+  "inLanguage": "id",
+  "description": "Aplikasi pencatat keuangan pribadi dan manajemen hutang dengan penagihan langsung via WhatsApp. Tanpa server, data tersimpan di perangkat pengguna."
+}
+</script>
+</head>
+<body>
+
+<a class="skip" href="#utama">Lewati ke konten</a>
+
+<!-- ============================ NAV ============================ -->
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#utama" aria-label="Duitku, ke awal halaman">
+      <img src="img/icon.svg" alt="" width="36" height="36">
+      <span>Duitku</span>
+    </a>
+
+    <nav class="nav-links" id="navLinks" aria-label="Navigasi utama">
+      <a href="#masalah">Kenapa Duitku</a>
+      <a href="#tagih">Tagih via WA</a>
+      <a href="#fitur">Fitur</a>
+      <a href="#tampilan">Tampilan</a>
+      <a href="#privasi">Privasi</a>
+      <a href="#harga">Harga</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn btn-sm nav-cta" href="#harga" data-checkout>Dapatkan Duitku</a>
+    </nav>
+
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Buka menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="utama">
+
+<!-- ============================ HERO ============================ -->
+<section class="hero">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="wrap hero-in">
+
+    <div class="hero-copy reveal">
+      <p class="eyebrow"><span class="dot"></span> Pencatat keuangan + penagih hutang otomatis</p>
+
+      <h1>Catat keuanganmu.<br><span class="hl">Tagih hutangmu</span> tanpa canggung.</h1>
+
+      <p class="lead">
+        Duitku mencatat pemasukan, pengeluaran, dan siapa saja yang berhutang padamu —
+        lalu menyiapkan pesan penagihannya di WhatsApp, lengkap dengan nominal, sisa,
+        dan sudah berapa lama hutang itu berjalan. Tinggal kamu kirim.
+      </p>
+
+      <div class="hero-cta">
+        <a class="btn btn-lg" href="#harga" data-checkout>Dapatkan Duitku</a>
+        <a class="btn btn-lg btn-ghost" href="#tagih">Lihat cara kerjanya</a>
+      </div>
+
+      <ul class="trust">
+        <li><span aria-hidden="true">🔒</span> Tanpa akun</li>
+        <li><span aria-hidden="true">📡</span> Tanpa server</li>
+        <li><span aria-hidden="true">✈️</span> Jalan offline</li>
+      </ul>
+    </div>
+
+    <div class="hero-art reveal">
+      <div class="phone phone-hero">
+        <div class="phone-bezel">
+          <img src="img/screens/01-beranda.webp" alt="Layar beranda Duitku: total saldo, ringkasan pemasukan dan pengeluaran, anggaran bulan ini, dan daftar orang yang perlu ditagih." width="640" height="1385" fetchpriority="high">
+        </div>
+      </div>
+
+      <div class="wa-card" aria-hidden="true">
+        <div class="wa-card-top">
+          <span class="wa-ico">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.17c-.24.68-1.42 1.31-1.95 1.35-.5.05-.96.23-3.23-.67-2.72-1.07-4.44-3.85-4.58-4.03-.13-.18-1.09-1.45-1.09-2.76 0-1.31.69-1.96.93-2.22.24-.27.53-.34.7-.34.18 0 .35 0 .5.01.16.01.38-.06.59.45.24.55.8 1.9.87 2.04.07.14.12.3.02.48-.09.18-.14.3-.28.46-.14.16-.29.36-.42.48-.14.14-.28.29-.12.57.16.27.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.21 1.37.27.14.43.12.59-.07.16-.18.68-.79.86-1.07.18-.27.36-.22.6-.13.25.09 1.58.75 1.85.88.27.14.45.2.52.32.07.11.07.64-.17 1.32Z"/></svg>
+          </span>
+          <div>
+            <strong>Rian Pratama</strong>
+            <small>online</small>
+          </div>
+        </div>
+        <div class="wa-bubble">
+          Halo Rian 👋<br><br>
+          Saya mau mengingatkan soal pinjaman sebesar <b>Rp2.000.000</b> pada 23 Juni 2026
+          (3 bulan 5 hari yang lalu).<br><br>
+          Sisa yang belum dilunasi: <b>Rp1.250.000</b>
+          <span class="wa-time">10.32 ✓✓</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================ STRIP ANGKA ============================ -->
+<section class="strip">
+  <div class="wrap strip-in">
+    <div class="strip-item reveal"><b>5</b><span>nada pesan penagihan</span></div>
+    <div class="strip-item reveal"><b>12</b><span>placeholder terisi otomatis</span></div>
+    <div class="strip-item reveal"><b>22</b><span>kategori bawaan</span></div>
+    <div class="strip-item reveal"><b>0</b><span>data dikirim ke server</span></div>
+  </div>
+</section>
+
+<!-- ============================ MASALAH ============================ -->
+<section class="sec" id="masalah">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="kicker">Kenapa Duitku ada</p>
+      <h2>Masalahnya bukan kamu nggak niat. Alatnya yang bikin capek.</h2>
+      <p class="sub">Tiga hal ini yang bikin catatan keuangan berhenti di tengah jalan — dan hutang jadi topik yang dihindari.</p>
+    </div>
+
+    <div class="grid-3">
+      <article class="card pain reveal">
+        <span class="pain-ico" aria-hidden="true">😮‍💨</span>
+        <h3>Catatan berhenti di minggu kedua</h3>
+        <p>Aplikasi lain minta daftar akun, minta izin, dan punya belasan menu sebelum kamu sempat mencatat satu pengeluaran. Akhirnya nggak kepakai.</p>
+      </article>
+
+      <article class="card pain reveal">
+        <span class="pain-ico" aria-hidden="true">🤔</span>
+        <h3>Lupa siapa pinjam berapa</h3>
+        <p>Hutang dicatat di kepala, di Notes, atau di chat yang sudah ketimbun ratusan pesan. Pas mau ditagih, kamu sendiri nggak yakin angkanya.</p>
+      </article>
+
+      <article class="card pain reveal">
+        <span class="pain-ico" aria-hidden="true">😬</span>
+        <h3>Nagih itu canggung</h3>
+        <p>Ngetik ulang pesannya dari nol tiap kali, mikirin nada yang pas biar nggak nyakitin, ujung-ujungnya ditunda terus sampai lupa.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ TAGIH VIA WHATSAPP ============================ -->
+<section class="sec sec-dark" id="tagih">
+  <div class="wrap">
+    <div class="sec-head sec-head-left reveal">
+      <p class="kicker kicker-light">Fitur andalan</p>
+      <h2>Satu tombol, pesan penagihannya sudah jadi.</h2>
+      <p class="sub">Buka catatan hutang, pilih nada pesannya, lihat pratinjaunya persis seperti tampilan chat WhatsApp — lalu kirim.</p>
+    </div>
+
+    <div class="tagih-in">
+      <div class="tagih-copy">
+        <ol class="steps reveal">
+          <li>
+            <b>Simpan nomor WhatsApp-nya sekali saja</b>
+            <span>Ketik <code>0812-3456-7890</code>, <code>+62 812 3456 7890</code>, atau <code>812 3456 7890</code> — semuanya dirapikan otomatis jadi <code>6281234567890</code>.</span>
+          </li>
+          <li>
+            <b>Pilih nada pesannya</b>
+            <span class="tones">
+              <em>Halus</em><em>Tegas</em><em>Pengingat Jatuh Tempo</em><em>Tawaran Cicilan</em><em>Ucapan Terima Kasih</em>
+            </span>
+          </li>
+          <li>
+            <b>Angkanya diisi sendiri oleh Duitku</b>
+            <span>Nominal, sisa, sudah terbayar berapa, umur hutang <i>(“3 bulan 5 hari”)</i>, tanggal jatuh tempo, sampai tanda tanganmu — 12 placeholder yang terisi otomatis.</span>
+          </li>
+          <li>
+            <b>Kamu yang menekan kirim</b>
+            <span>Duitku hanya <i>membuka</i> WhatsApp dengan pesan yang sudah terisi. Tidak ada satu pun pesan yang terkirim tanpa sepengetahuanmu.</span>
+          </li>
+        </ol>
+
+        <div class="ph-box reveal">
+          <p class="ph-title">Placeholder yang bisa kamu pakai di template sendiri</p>
+          <div class="ph-list">
+            <code>{nama}</code><code>{panggilan}</code><code>{total}</code><code>{sisa}</code>
+            <code>{terbayar}</code><code>{lama}</code><code>{hari}</code><code>{tanggal}</code>
+            <code>{jatuhtempo}</code><code>{statustempo}</code><code>{catatan}</code><code>{pengirim}</code>
+          </div>
+        </div>
+      </div>
+
+      <div class="tagih-art reveal">
+        <div class="phone phone-stack-a">
+          <div class="phone-bezel">
+            <img loading="lazy" src="img/screens/05-tagih-whatsapp.webp" alt="Panel penagihan Duitku dengan pilihan nada pesan dan pratinjau pesan bernada halus." width="640" height="1385">
+          </div>
+        </div>
+        <div class="phone phone-stack-b">
+          <div class="phone-bezel">
+            <img loading="lazy" src="img/screens/06-tagih-tegas.webp" alt="Pratinjau pesan penagihan dengan nada pengingat jatuh tempo." width="640" height="1385">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="note reveal">
+      🔒 Riwayat setiap penagihan tersimpan lengkap dengan isi pesannya, jadi kamu selalu tahu
+      kapan terakhir menagih dan apa yang kamu tulis.
+    </p>
+  </div>
+</section>
+
+<!-- ============================ GRID FITUR ============================ -->
+<section class="sec" id="fitur">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="kicker">Isi aplikasinya</p>
+      <h2>Semua yang dibutuhkan catatan keuangan harian.</h2>
+      <p class="sub">Tanpa fitur yang cuma bikin ramai — semuanya dipakai, semuanya cepat.</p>
+    </div>
+
+    <div class="grid-3 grid-feat">
+      <article class="card feat reveal"><span class="feat-ico">👛</span><h3>Multi-dompet</h3><p>Uang tunai, rekening bank, e-wallet, atau dompet buatanmu sendiri — masing-masing punya saldo terpisah dan mutasinya sendiri.</p></article>
+      <article class="card feat reveal"><span class="feat-ico">🏷️</span><h3>22 kategori bawaan</h3><p>Makan, transportasi, tagihan, gaji, freelance, dan seterusnya. Mau kategori sendiri? Bebas pilih ikon dan warnanya.</p></article>
+      <article class="card feat reveal"><span class="feat-ico">🤝</span><h3>Hutang &amp; piutang dua arah</h3><p>Catat yang berhutang padamu maupun yang kamu hutangi, lengkap dengan cicilan, riwayat pembayaran, dan progress bar pelunasan.</p></article>
+      <article class="card feat reveal"><span class="feat-ico">⏰</span><h3>Deteksi jatuh tempo</h3><p>Kartu berubah merah begitu lewat tempo, dan yang paling mendesak otomatis naik ke urutan atas. Umur hutang dihitung sendiri.</p></article>
+      <article class="card feat reveal"><span class="feat-ico">🎯</span><h3>Anggaran bulanan</h3><p>Batas belanja total atau per kategori. Hijau saat aman, kuning di atas 80%, merah saat jebol — lengkap dengan sisa dan kelebihannya.</p></article>
+      <article class="card feat reveal"><span class="feat-ico">📊</span><h3>Laporan &amp; grafik</h3><p>Donut per kategori, batang masuk-vs-keluar, rata-rata harian, hari paling boros, dan rasio tabungan. Semua digambar sendiri, ringan.</p></article>
+      <article class="card feat reveal"><span class="feat-ico">🌙</span><h3>Mode gelap penuh</h3><p>Bukan sekadar warna dibalik — palet gelapnya dirancang terpisah supaya angka tetap enak dibaca malam hari.</p></article>
+      <article class="card feat reveal"><span class="feat-ico">👁️</span><h3>Sembunyikan saldo</h3><p>Sekali tekan, semua nominal berubah jadi titik-titik. Berguna saat mencatat di tempat umum.</p></article>
+      <article class="card feat reveal"><span class="feat-ico">💾</span><h3>Cadangan &amp; pindah HP</h3><p>Ekspor seluruh datamu jadi satu berkas JSON, impor lagi di perangkat lain. Datamu tetap milikmu sepenuhnya.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ASISTEN ============================ -->
+<section class="sec sec-soft" id="asisten">
+  <div class="wrap split">
+    <div class="split-art reveal">
+      <div class="phone">
+        <div class="phone-bezel">
+          <img loading="lazy" src="img/screens/11-asisten-jawab.webp" alt="Asisten keuangan Duitku menjawab pertanyaan kategori paling boros, lengkap dengan peringkat kategori berbentuk bar." width="640" height="1385">
+        </div>
+      </div>
+    </div>
+
+    <div class="split-copy reveal">
+      <p class="kicker">Asisten keuangan</p>
+      <h2>Tanya langsung, nggak perlu scroll dan hitung sendiri.</h2>
+      <p class="sub">Tombol mengambang di setiap halaman. Ketik pertanyaanmu pakai bahasa sehari-hari, jawabannya keluar berbentuk angka, bar, dan perbandingan.</p>
+
+      <ul class="qa">
+        <li><span class="q">“Berapa pengeluaran bensin bulan ini?”</span><span class="a">Nominal, jumlah transaksi, rata-rata harian, dan perbandingan otomatis dengan bulan lalu.</span></li>
+        <li><span class="q">“Kategori apa yang paling boros?”</span><span class="a">Peringkat kategori berbentuk bar beserta persentasenya.</span></li>
+        <li><span class="q">“Ada saran biar lebih hemat?”</span><span class="a">Lonjakan tak wajar, transaksi receh yang menumpuk, anggaran jebol, dan piutang yang mengendap.</span></li>
+      </ul>
+
+      <div class="callout">
+        <b>Semua analisisnya berjalan di perangkatmu.</b>
+        Tanpa API, tanpa kunci, tanpa biaya, dan tidak sepotong pun data keuanganmu dikirim ke internet —
+        jadi tetap berfungsi saat offline, dan angkanya dihitung langsung dari catatanmu sendiri.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ PDF + SHEETS ============================ -->
+<section class="sec" id="ekspor">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="kicker">Bawa keluar datamu</p>
+      <h2>Untuk diarsipkan, dicetak, atau diolah lebih jauh.</h2>
+    </div>
+
+    <div class="grid-2">
+      <article class="card big reveal">
+        <span class="feat-ico">📄</span>
+        <h3>Laporan PDF yang rapi</h3>
+        <p>Pilih periodenya — harian, mingguan, bulanan, tahunan, atau rentang tanggal bebas — lalu tentukan sendiri isi laporannya lewat 7 saklar.</p>
+        <ul class="ticks">
+          <li>Kop hijau berisi nama, periode, dan tanggal pembuatan</li>
+          <li>Diagram batang &amp; donat digambar sebagai vektor asli, tajam saat dicetak</li>
+          <li>Tabel transaksi lengkap, posisi tiap dompet, dan pemakaian anggaran</li>
+          <li>Daftar hutang aktif dengan kotak sorot untuk yang lewat tempo</li>
+        </ul>
+        <p class="tiny">Cocok untuk arsip pribadi, laporan ke pasangan, atau lampiran pengajuan pinjaman.</p>
+      </article>
+
+      <article class="card big reveal">
+        <span class="feat-ico">📗</span>
+        <h3>Sinkron ke Google Sheets milikmu</h3>
+        <p>Kirim seluruh data ke spreadsheet-mu sendiri, tanpa server perantara. Spreadsheet-nya tetap privat — yang diakses hanya script kecil yang kamu pasang sendiri.</p>
+        <ul class="ticks">
+          <li>Lima sheet: Ringkasan, Transaksi, Hutang, Dompet, Anggaran</li>
+          <li>Judul kolom dibekukan, filter dipasang, nominal diformat mata uang</li>
+          <li>Tanggal ditulis sebagai tanggal asli — langsung bisa dibuat pivot</li>
+          <li>Sheet lain buatanmu sendiri tidak pernah disentuh</li>
+        </ul>
+        <p class="tiny">Panduan pemasangannya ada di dalam aplikasi, lengkap dengan tombol salin kode dan versi PDF-nya.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ GALERI ============================ -->
+<section class="sec sec-soft" id="tampilan">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="kicker">Tampilan aplikasi</p>
+      <h2>Bukan mockup. Ini tangkapan layar aplikasi yang benar-benar berjalan.</h2>
+      <p class="sub">Geser untuk melihat lebih banyak — tersedia dalam mode terang dan gelap.</p>
+    </div>
+  </div>
+
+  <div class="gallery" id="gallery" tabindex="0" aria-label="Galeri tangkapan layar Duitku, bisa digeser">
+    <figure class="shot"><div class="phone"><div class="phone-bezel"><img loading="lazy" src="img/screens/01-beranda.webp" alt="Beranda Duitku" width="640" height="1385"></div></div><figcaption>Beranda</figcaption></figure>
+    <figure class="shot"><div class="phone"><div class="phone-bezel"><img loading="lazy" src="img/screens/02-transaksi.webp" alt="Daftar transaksi dengan filter dan pengelompokan per hari" width="640" height="1385"></div></div><figcaption>Transaksi</figcaption></figure>
+    <figure class="shot"><div class="phone"><div class="phone-bezel"><img loading="lazy" src="img/screens/03-hutang.webp" alt="Daftar hutang dan piutang" width="640" height="1385"></div></div><figcaption>Hutang &amp; piutang</figcaption></figure>
+    <figure class="shot"><div class="phone"><div class="phone-bezel"><img loading="lazy" src="img/screens/04-detail-hutang.webp" alt="Detail hutang dengan progress pelunasan dan riwayat cicilan" width="640" height="1385"></div></div><figcaption>Detail &amp; cicilan</figcaption></figure>
+    <figure class="shot"><div class="phone"><div class="phone-bezel"><img loading="lazy" src="img/screens/05-tagih-whatsapp.webp" alt="Panel penagihan WhatsApp" width="640" height="1385"></div></div><figcaption>Tagih via WhatsApp</figcaption></figure>
+    <figure class="shot"><div class="phone"><div class="phone-bezel"><img loading="lazy" src="img/screens/07-laporan.webp" alt="Laporan bulanan dengan donut kategori" width="640" height="1385"></div></div><figcaption>Laporan</figcaption></figure>
+    <figure class="shot"><div class="phone"><div class="phone-bezel"><img loading="lazy" src="img/screens/13-laporan-grafik.webp" alt="Grafik batang mingguan dan ringkasan cerdas" width="640" height="1385"></div></div><figcaption>Grafik &amp; ringkasan</figcaption></figure>
+    <figure class="shot"><div class="phone"><div class="phone-bezel"><img loading="lazy" src="img/screens/09-anggaran.webp" alt="Halaman anggaran bulanan" width="640" height="1385"></div></div><figcaption>Anggaran</figcaption></figure>
+    <figure class="shot"><div class="phone"><div class="phone-bezel"><img loading="lazy" src="img/screens/08-laporan-pdf.webp" alt="Pemilih periode dan isi laporan sebelum diunduh sebagai PDF" width="640" height="1385"></div></div><figcaption>Unduh PDF</figcaption></figure>
+    <figure class="shot"><div class="phone"><div class="phone-bezel"><img loading="lazy" src="img/screens/20-beranda-gelap.webp" alt="Beranda Duitku dalam mode gelap" width="640" height="1385"></div></div><figcaption>Beranda · gelap</figcaption></figure>
+    <figure class="shot"><div class="phone"><div class="phone-bezel"><img loading="lazy" src="img/screens/22-hutang-gelap.webp" alt="Daftar hutang dalam mode gelap" width="640" height="1385"></div></div><figcaption>Hutang · gelap</figcaption></figure>
+    <figure class="shot"><div class="phone"><div class="phone-bezel"><img loading="lazy" src="img/screens/21-laporan-gelap.webp" alt="Laporan dalam mode gelap" width="640" height="1385"></div></div><figcaption>Laporan · gelap</figcaption></figure>
+  </div>
+</section>
+
+<!-- ============================ PRIVASI ============================ -->
+<section class="sec" id="privasi">
+  <div class="wrap">
+    <div class="privasi reveal">
+      <div class="privasi-copy">
+        <p class="kicker kicker-light">Privasi</p>
+        <h2>Datamu tidak ke mana-mana.</h2>
+        <p class="sub">Duitku tidak punya server, tidak punya akun, dan tidak punya apa pun untuk dikirim. Semua catatanmu tersimpan di penyimpanan browser perangkatmu sendiri.</p>
+        <p class="privasi-note">Karena catatan hutang memuat nama dan nomor WhatsApp orang lain, ini bukan sekadar fitur — ini keharusan.</p>
+      </div>
+      <ul class="privasi-list">
+        <li><b>Tanpa akun</b>Tidak ada pendaftaran, tidak ada email, tidak ada kata sandi.</li>
+        <li><b>Tanpa server</b>Tidak ada basis data di mana pun yang menyimpan catatanmu.</li>
+        <li><b>Tanpa tracking</b>Tidak ada analitik, tidak ada iklan, tidak ada pihak ketiga.</li>
+        <li><b>Tetap jalan offline</b>Termasuk asisten keuangannya, karena semua dihitung di perangkat.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ HARGA ============================ -->
+<section class="sec sec-soft" id="harga">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="kicker">Harga</p>
+      <h2>Sekali bayar. Dipakai selamanya.</h2>
+      <p class="sub">Tanpa langganan bulanan, tanpa biaya server — karena memang tidak ada server yang perlu dibayar.</p>
+    </div>
+
+    <div class="price-card reveal">
+      <div class="price-top">
+        <p class="price-name">Duitku</p>
+        <p class="price-amount"><span class="cur">Rp</span><span data-price>—</span></p>
+        <p class="price-sub">bayar sekali, tanpa biaya berulang</p>
+      </div>
+
+      <ul class="ticks price-list">
+        <li>Seluruh fitur aplikasi, tanpa versi terkunci</li>
+        <li>Penagihan WhatsApp dengan 5 nada &amp; template kustom</li>
+        <li>Asisten keuangan yang berjalan di perangkat</li>
+        <li>Laporan PDF &amp; sinkronisasi Google Sheets</li>
+        <li>Mode gelap, multi-dompet, anggaran, dan cadangan data</li>
+        <li>Pembaruan berikutnya</li>
+      </ul>
+
+      <a class="btn btn-lg btn-block" href="#harga" data-checkout>Dapatkan Duitku</a>
+      <p class="price-foot">Ada pertanyaan sebelum membeli? <a href="#faq">Cek FAQ di bawah</a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FAQ ============================ -->
+<section class="sec" id="faq">
+  <div class="wrap wrap-narrow">
+    <div class="sec-head reveal">
+      <p class="kicker">FAQ</p>
+      <h2>Pertanyaan yang sering muncul</h2>
+    </div>
+
+    <div class="faq reveal">
+      <details>
+        <summary>Data saya disimpan di mana?</summary>
+        <div><p>Di perangkatmu sendiri, lewat penyimpanan lokal browser (<code>localStorage</code>). Duitku tidak punya server, jadi tidak ada tempat lain yang menyimpan catatanmu. Konsekuensinya: kalau kamu membersihkan data browser tanpa mencadangkan dulu, catatannya ikut hilang — makanya ada fitur ekspor cadangan.</p></div>
+      </details>
+
+      <details>
+        <summary>Pesan WhatsApp-nya terkirim otomatis?</summary>
+        <div><p>Tidak. Duitku hanya <b>membuka</b> WhatsApp dengan pesan yang sudah terisi lengkap di kolom ketik. Kamu masih bisa mengeditnya, dan kamu sendiri yang menekan tombol kirim. Tidak ada pesan yang keluar tanpa sepengetahuanmu.</p></div>
+      </details>
+
+      <details>
+        <summary>Perlu internet untuk memakainya?</summary>
+        <div><p>Tidak untuk fitur utamanya. Mencatat, menghitung, membuat laporan PDF, sampai bertanya ke asisten keuangan semuanya berjalan offline. Internet hanya dibutuhkan saat kamu benar-benar mengirim pesan lewat WhatsApp atau menyinkronkan ke Google Sheets.</p></div>
+      </details>
+
+      <details>
+        <summary>Bisa dipakai di iPhone?</summary>
+        <div><p>Bisa. Duitku adalah aplikasi web (PWA), jadi tinggal dibuka lewat Safari lalu pilih <i>Bagikan → Tambahkan ke Layar Utama</i>. Setelah itu tampil dan terbuka seperti aplikasi biasa. Versi Android tersedia sebagai aplikasi terpasang lewat Capacitor.</p></div>
+      </details>
+
+      <details>
+        <summary>Kalau saya ganti HP, datanya ikut pindah?</summary>
+        <div><p>Ikut, asal dicadangkan dulu. Di Pengaturan ada <i>Ekspor Cadangan</i> yang menghasilkan satu berkas JSON — tinggal impor di perangkat baru. Kalau kamu mengaktifkan sinkronisasi Google Sheets, salinan datanya juga sudah ada di spreadsheet-mu sendiri.</p></div>
+      </details>
+
+      <details>
+        <summary>Ada biaya langganan bulanan?</summary>
+        <div><p>Tidak ada. Pembayarannya sekali. Karena Duitku tidak menjalankan server apa pun, tidak ada biaya berjalan yang perlu ditutup dengan langganan.</p></div>
+      </details>
+
+      <details>
+        <summary>Bisa dipakai untuk usaha kecil atau arisan?</summary>
+        <div><p>Bisa, selama skalanya masih personal. Catatan hutang-piutang dua arah, cicilan, jatuh tempo, dan penagihan WhatsApp-nya justru paling terasa gunanya di warung, toko kecil, atau pengurus arisan yang sering menalangi dulu.</p></div>
+      </details>
+
+      <details>
+        <summary>Kalau bingung saat memasang, ada bantuan?</summary>
+        <div><p>Ada. Panduan pemasangan dan panduan sinkronisasi Google Sheets tersedia di dalam aplikasi, lengkap dengan tombol salin kode dan versi PDF yang bisa diunduh. Kalau masih tersendat, hubungi kontak yang tercantum di bagian bawah halaman ini.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CTA PENUTUP ============================ -->
+<section class="cta">
+  <div class="wrap cta-in reveal">
+    <h2>Berhenti menunda penagihan yang bikin canggung.</h2>
+    <p>Catat hari ini, tagih dengan tenang besok. Datamu tetap di tanganmu sendiri.</p>
+    <a class="btn btn-lg btn-light" href="#harga" data-checkout>Dapatkan Duitku</a>
+    <p class="cta-tiny">Sekali bayar · Tanpa akun · Tanpa langganan</p>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div class="foot-brand">
+      <a class="brand" href="#utama"><img src="img/icon.svg" alt="" width="32" height="32"><span>Duitku</span></a>
+      <p>Aplikasi pencatat keuangan pribadi &amp; manajemen hutang dengan penagihan langsung via WhatsApp.</p>
+    </div>
+
+    <nav class="foot-links" aria-label="Tautan footer">
+      <div>
+        <h4>Produk</h4>
+        <a href="#tagih">Tagih via WhatsApp</a>
+        <a href="#fitur">Fitur</a>
+        <a href="#tampilan">Tampilan</a>
+        <a href="#harga">Harga</a>
+      </div>
+      <div>
+        <h4>Bantuan</h4>
+        <a href="#faq">FAQ</a>
+        <a href="#privasi">Privasi</a>
+        <a href="mailto:sjuariah802@gmail.com">Kontak</a>
+      </div>
+    </nav>
+  </div>
+
+  <div class="wrap foot-bot">
+    <p>© <span id="year">2026</span> Duitku. Dibuat di Indonesia.</p>
+    <p>Semua nominal dan nama pada tangkapan layar adalah data contoh.</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
