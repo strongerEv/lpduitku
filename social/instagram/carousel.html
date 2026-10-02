@@ -2,244 +2,337 @@
 <html lang="id">
 <head>
 <meta charset="utf-8">
-<title>Duitku — Carousel Instagram</title>
+<title>Duitku — Carousel Portfolio YUBUILDS</title>
 <link rel="stylesheet" href="../../css/fonts.css">
 <style>
 /* ==========================================================================
-   Duitku — Carousel Instagram · 5 slide · 1080 × 1350 px (rasio 4:5)
+   Carousel portfolio YUBUILDS — studi kasus aplikasi Duitku
+   5 slide · 1080 × 1350 px (rasio 4:5)
 
-   Palet, radius, dan bayangannya menyalin design system aplikasi
-   (duitkurapi/src/index.css) supaya satu nada dengan aplikasinya.
+   Identitas visualnya mengikuti feed @yubuilds: merah gelap, pendar oranye,
+   aksen kuning, judul kapital tebal. Tangkapan layar aplikasinya sengaja
+   dibiarkan berwarna hijau — itu memang warna produknya; bingkainya milik
+   yubuilds, isinya karya yang ditampilkan.
+
+   Tata letaknya memakai aliran flex dan elemen bawah diturunkan dengan
+   margin-top:auto, bukan posisi absolut, supaya isi slide tidak mungkin
+   saling menimpa kalau teksnya nanti diubah panjangnya.
 
    Setiap <section class="slide"> difoto satu per satu oleh render.mjs.
-   Tata letaknya memakai aliran flex — elemen bawah dipaksa turun dengan
-   margin-top:auto, bukan diposisikan absolut — supaya isi slide tidak
-   mungkin saling menimpa kalau teksnya nanti diubah panjangnya.
    ========================================================================== */
 
 :root {
-  --green-300:#6FD9A8; --green-400:#35C98A; --green-500:#12996B;
-  --green-600:#0E8159; --green-700:#0B6746;
-  --mint:#1FD08A;
+  /* Merek yubuilds */
+  --merah-900:#240303; --merah-800:#3A0606; --merah-700:#5E0A0A; --merah-600:#7A0D0D;
+  --bara:#FF5A1F;
+  --kuning:#FFC21F; --kuning-2:#FFD95C;
 
-  --bg:#F3F8F5; --surface:#FFFFFF; --border:#E2EDE7;
-  --text:#0E2A20; --muted:#52705F; --faint:#8AA698;
-
-  --d-text:#EAF7F0; --d-muted:#A8CDBB; --d-faint:#82B39A;
+  --ink:#FFFFFF;
+  --ink-2:rgba(255,232,222,.80);
+  --ink-3:rgba(255,222,210,.56);
+  --garis:rgba(255,150,100,.22);
+  --panel:rgba(26,3,3,.46);
 
   --pad:84px;
   --font:'Plus Jakarta Sans','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
 }
 
 *,*::before,*::after { box-sizing:border-box; }
-body { margin:0; background:#4d5853; font-family:var(--font); -webkit-font-smoothing:antialiased; }
+body { margin:0; background:#16100f; font-family:var(--font); -webkit-font-smoothing:antialiased; }
 img { display:block; max-width:100%; height:auto; }
 
 .slide {
   position:relative; width:1080px; height:1350px; overflow:hidden;
   padding:var(--pad);
   display:flex; flex-direction:column;
-  background:var(--bg); color:var(--text);
+  color:var(--ink);
   margin:0 auto 40px;
+  background:
+    radial-gradient(64% 44% at 50% 40%, rgba(255,96,24,.30), transparent 64%),
+    radial-gradient(96% 52% at 50% 104%, rgba(255,150,40,.24), transparent 70%),
+    linear-gradient(168deg, var(--merah-800) 0%, var(--merah-600) 44%, var(--merah-900) 100%);
 }
 
-.slide.dark {
-  color:var(--d-text);
-  background:
-    radial-gradient(58% 46% at 86% 4%, rgba(31,208,138,.22), transparent 64%),
-    radial-gradient(52% 40% at 6% 96%, rgba(14,165,160,.16), transparent 68%),
-    linear-gradient(158deg,#0C3E2C 0%,#07291C 54%,#041710 100%);
+/* Kisi teknis tipis, diredupkan di tepi supaya tidak mengganggu teks. */
+.slide::before {
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,140,80,.075) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,140,80,.075) 1px, transparent 1px);
+  background-size:72px 72px;
+  -webkit-mask-image:radial-gradient(78% 66% at 50% 46%, #000 18%, transparent 86%);
+          mask-image:radial-gradient(78% 66% at 50% 46%, #000 18%, transparent 86%);
 }
+
+/* Garis cakrawala berpendar, ciri khas feed-nya. */
+.s1::after {
+  content:""; position:absolute; left:0; right:0; top:62%; height:2px; pointer-events:none;
+  background:linear-gradient(90deg, transparent, rgba(255,150,60,.55) 22%, rgba(255,205,120,.75) 50%, rgba(255,150,60,.55) 78%, transparent);
+  filter:blur(1px); opacity:.5;
+}
+.slide > * { position:relative; z-index:1; }
 
 /* ------------------------------------------------------------- kop slide --- */
-.top { display:flex; align-items:center; justify-content:space-between; flex:none; }
-.brand { display:flex; align-items:center; gap:16px; }
-.brand img { width:62px; height:62px; border-radius:17px; }
-.brand span { font-size:38px; font-weight:800; letter-spacing:-.025em; }
-.count { font-size:22px; font-weight:800; letter-spacing:.14em; color:var(--faint); }
-.dark .count { color:var(--d-faint); }
+.top { display:flex; align-items:flex-start; justify-content:space-between; flex:none; }
+
+.mark { display:flex; align-items:flex-start; gap:16px; }
+.mark .glif {
+  width:14px; height:46px; flex:none; margin-top:4px;
+  background:linear-gradient(180deg,var(--kuning),var(--bara));
+  box-shadow:0 0 22px rgba(255,120,30,.6);
+}
+.mark .baris { line-height:1.2; }
+.mark .atas {
+  display:block; font-size:18px; font-weight:800; letter-spacing:.26em;
+  text-transform:uppercase; color:var(--ink-3);
+}
+.mark .bawah {
+  display:block; margin-top:3px; font-size:27px; font-weight:800; letter-spacing:.03em;
+  text-transform:uppercase; color:#fff;
+}
+.mark .bawah b { color:var(--kuning); font-weight:800; }
+
+.count {
+  font-size:21px; font-weight:800; letter-spacing:.2em; color:var(--ink-3);
+  display:flex; align-items:center; gap:14px;
+}
+.count i { display:block; width:46px; height:2px; background:var(--garis); }
 
 /* ------------------------------------------------------------- tipografi --- */
 .kicker {
-  margin:0; font-size:23px; font-weight:800; letter-spacing:.17em;
-  text-transform:uppercase; color:var(--green-500);
+  margin:0; font-size:21px; font-weight:800; letter-spacing:.22em;
+  text-transform:uppercase; color:var(--kuning);
 }
-.dark .kicker { color:var(--green-300); }
 
-h1,h2 { margin:0; font-weight:800; letter-spacing:-.032em; line-height:1.07; text-wrap:balance; }
-h1 { font-size:80px; }
-h2 { font-size:66px; }
-em { font-style:normal;
-     background:linear-gradient(104deg,var(--green-400),var(--mint) 52%,var(--green-300));
-     -webkit-background-clip:text; background-clip:text; color:transparent; }
-.dark h1, .dark h2 { color:#fff; }
+h1,h2 {
+  margin:0; font-weight:800; letter-spacing:-.012em; line-height:1.04;
+  text-transform:uppercase; text-wrap:balance;
+}
+h1 { font-size:74px; }
+h2 { font-size:56px; }
+em { font-style:normal; color:var(--kuning); }
 
-.lead { margin:0; font-size:31px; line-height:1.52; color:var(--muted); }
-.dark .lead { color:var(--d-muted); }
+.lead { margin:0; font-size:29px; line-height:1.52; color:var(--ink-2); }
+
+/* ------------------------------------------------------------ rel bawah --- */
+.rel {
+  margin-top:28px; padding-top:22px; flex:none;
+  border-top:2px solid var(--garis);
+  display:flex; align-items:center; justify-content:space-between;
+  font-size:18px; font-weight:800; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--ink-3);
+}
+.rel .alur { color:var(--ink-2); }
+.rel .alur b { color:var(--kuning); font-weight:800; }
 
 /* ---------------------------------------------------------------- ponsel --- */
 .phone .bezel {
   padding:11px; border-radius:52px;
-  background:linear-gradient(160deg,#283D33,#0A120E 68%);
-  box-shadow:0 40px 90px rgba(0,0,0,.34), 0 0 0 2px rgba(255,255,255,.10) inset;
+  background:linear-gradient(160deg,#3A1410,#140605 68%);
+  box-shadow:
+    0 44px 100px rgba(0,0,0,.58),
+    0 0 92px rgba(255,100,30,.30),
+    0 0 0 2px rgba(255,170,120,.22) inset;
 }
 .phone .bezel img { border-radius:42px; }
-.dark .phone .bezel { box-shadow:0 44px 100px rgba(0,0,0,.55), 0 0 0 2px rgba(255,255,255,.12) inset; }
 
 /* ===================================================== SLIDE 1 — sampul === */
-.s1 .teks { margin-top:88px; }
-.s1 h1 { margin-top:28px; }
-.s1 .lead { margin-top:32px; max-width:620px; }
+.s1 .teks { margin-top:84px; }
+.s1 h1 { margin-top:26px; }
+.s1 .lead { margin-top:30px; max-width:620px; }
 
-/* Ponsel ditaruh di kanan dan dibiarkan terpotong tepi bawah; sisi kiri
-   dibiarkan lapang supaya pil "Geser" tidak pernah tertimpa. */
 .s1 .phone {
-  align-self:flex-end; margin-top:62px; margin-right:-76px;
+  position:absolute; right:8px; top:758px; z-index:1;
   width:452px; transform:rotate(-5deg); transform-origin:top center;
 }
+.s1 .scrim {
+  position:absolute; left:0; right:0; bottom:0; height:260px; z-index:2;
+  background:linear-gradient(transparent, rgba(26,3,3,.55) 42%, rgba(20,2,2,.9));
+  pointer-events:none;
+}
+.s1 .swipe, .s1 .rel { z-index:3; }
 
 .s1 .swipe {
-  position:absolute; left:var(--pad); bottom:var(--pad);
+  position:absolute; left:var(--pad); bottom:170px; z-index:2;
   display:inline-flex; align-items:center; gap:16px;
-  font-size:26px; font-weight:700; color:var(--d-text);
-  background:rgba(255,255,255,.09); border:2px solid rgba(255,255,255,.18);
-  padding:18px 34px; border-radius:999px;
+  font-size:23px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:#fff;
+  background:rgba(32,4,4,.58); border:2px solid var(--garis);
+  padding:18px 32px; border-radius:999px;
+  backdrop-filter:blur(4px);
 }
-.s1 .swipe b { font-size:30px; color:var(--mint); }
+.s1 .swipe b { font-size:26px; color:var(--kuning); letter-spacing:0; }
+
+.s1 .rel { margin-top:auto; }
 
 /* ================================================== SLIDE 2 — masalahnya === */
-.s2 .teks { margin-top:80px; }
-.s2 h2 { margin-top:26px; }
+.s2 .teks { margin-top:76px; }
+.s2 h2 { margin-top:24px; }
 
-.poin { flex:1; display:flex; flex-direction:column; justify-content:center; gap:28px; }
+.poin { flex:1; display:flex; flex-direction:column; justify-content:center; gap:26px; }
 .poin article {
   display:flex; gap:28px; align-items:flex-start;
-  background:var(--surface); border:2px solid var(--border);
-  border-radius:30px; padding:34px 36px;
-  box-shadow:0 10px 30px rgba(9,45,32,.05);
+  background:var(--panel); border:2px solid var(--garis);
+  border-radius:26px; padding:32px 34px;
 }
 .poin .no {
-  flex:none; width:62px; height:62px; border-radius:20px;
+  flex:none; width:60px; height:60px; border-radius:16px;
   display:grid; place-items:center;
-  font-size:25px; font-weight:800; color:#fff;
-  background:linear-gradient(135deg,var(--green-400),var(--green-600));
-  box-shadow:0 10px 22px rgba(18,153,107,.3);
+  font-size:24px; font-weight:800; color:#2A0404;
+  background:linear-gradient(135deg,var(--kuning-2),var(--bara));
+  box-shadow:0 10px 26px rgba(255,120,30,.34);
 }
-.poin h3 { margin:0 0 8px; font-size:33px; font-weight:800; letter-spacing:-.02em; }
-.poin p  { margin:0; font-size:25px; line-height:1.5; color:var(--muted); }
+.poin h3 {
+  margin:0 0 8px; font-size:31px; font-weight:800; letter-spacing:-.01em;
+  text-transform:uppercase; color:#fff;
+}
+.poin p { margin:0; font-size:24px; line-height:1.5; color:var(--ink-2); }
 
-/* ============================================== SLIDE 3 — fungsi utama ===== */
-.s3 .teks { margin-top:56px; }
-.s3 h2 { margin-top:20px; font-size:56px; }
+/* ============================================== SLIDE 3 — fitur inti ======= */
+.s3 .teks { margin-top:52px; }
+.s3 h2 { margin-top:20px; font-size:52px; }
 
-.s3 .isi { margin-top:44px; display:flex; gap:44px; align-items:flex-start; }
+.s3 .isi { margin-top:42px; display:flex; gap:44px; align-items:flex-start; }
 
 .langkah { counter-reset:l; list-style:none; margin:0; padding:0; flex:1; }
-.langkah li { position:relative; padding-left:72px; margin-bottom:38px; }
+.langkah li { position:relative; padding-left:72px; margin-bottom:36px; }
 .langkah li:last-child { margin-bottom:0; }
 .langkah li::before {
   content:counter(l); counter-increment:l;
   position:absolute; left:0; top:-2px;
-  width:52px; height:52px; border-radius:50%;
+  width:50px; height:50px; border-radius:50%;
   display:grid; place-items:center;
-  font-size:23px; font-weight:800; color:#06251A;
-  background:linear-gradient(135deg,var(--mint),var(--green-400));
-  box-shadow:0 10px 24px rgba(31,208,138,.34);
+  font-size:22px; font-weight:800; color:#2A0404;
+  background:linear-gradient(135deg,var(--kuning-2),var(--bara));
+  box-shadow:0 10px 26px rgba(255,120,30,.38);
 }
-.langkah b { display:block; font-size:28px; font-weight:800; letter-spacing:-.02em; color:#fff; margin-bottom:8px; }
-.langkah span { display:block; font-size:23px; line-height:1.5; color:var(--d-muted); }
+.langkah b {
+  display:block; font-size:26px; font-weight:800; letter-spacing:.01em;
+  text-transform:uppercase; color:#fff; margin-bottom:8px;
+}
+.langkah span { display:block; font-size:22px; line-height:1.5; color:var(--ink-2); }
 
 .s3 .phone { flex:none; width:300px; }
 
 .catatan {
   margin-top:auto;
-  display:flex; gap:22px; align-items:flex-start;
-  background:rgba(255,255,255,.07); border:2px solid rgba(255,255,255,.14);
-  border-radius:26px; padding:28px 32px;
-  font-size:23px; line-height:1.45; color:var(--d-muted);
+  display:flex; gap:20px; align-items:flex-start;
+  background:var(--panel); border:2px solid var(--garis);
+  border-radius:22px; padding:26px 30px;
+  font-size:22px; line-height:1.45; color:var(--ink-2);
 }
-.catatan b { color:#fff; font-weight:800; }
+.catatan b { color:var(--kuning); font-weight:800; }
 
-/* ================================================ SLIDE 4 — kegunaan ======= */
-.s4 .teks { margin-top:70px; }
+/* ================================================ SLIDE 4 — isi aplikasi == */
+.s4 .teks { margin-top:64px; }
 .s4 h2 { margin-top:22px; }
-.s4 .lead { margin-top:22px; max-width:820px; font-size:29px; }
+.s4 .lead { margin-top:22px; max-width:840px; font-size:27px; }
 
-.deret { margin-top:48px; display:flex; gap:32px; justify-content:space-between; }
+.deret { margin-top:44px; display:flex; gap:32px; justify-content:space-between; }
 .deret figure { margin:0; width:240px; }
 .deret figcaption {
   margin-top:22px; text-align:center;
-  font-size:24px; font-weight:800; letter-spacing:-.01em; color:var(--text);
+  font-size:20px; font-weight:800; letter-spacing:.05em; text-transform:uppercase; color:#fff;
 }
-.deret small { display:block; font-weight:600; color:var(--faint); font-size:21px; margin-top:4px; }
+.deret small {
+  display:block; margin-top:5px; font-size:19px; font-weight:600;
+  letter-spacing:0; text-transform:none; color:var(--ink-3);
+}
 
-.chips { margin-top:auto; display:flex; flex-wrap:wrap; gap:13px; justify-content:center; }
+.chips { margin-top:auto; padding-top:32px; display:flex; flex-wrap:wrap; gap:12px; justify-content:center; }
 .chips span {
-  font-size:23px; font-weight:700; color:var(--green-600);
-  background:var(--surface); border:2px solid var(--border);
-  padding:13px 24px; border-radius:999px;
+  font-size:21px; font-weight:800; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--kuning); background:rgba(32,4,4,.5); border:2px solid var(--garis);
+  padding:12px 22px; border-radius:999px;
 }
 
-/* ================================================== SLIDE 5 — privasi ===== */
-.s5 .teks { margin-top:72px; }
+/* ================================================== SLIDE 5 — penutup ===== */
+.s5 .teks { margin-top:64px; }
 .s5 h2 { margin-top:24px; }
-.s5 .lead { margin-top:28px; max-width:800px; }
+.s5 .lead { margin-top:26px; max-width:820px; }
 
-.janji { margin-top:44px; list-style:none; padding:0; }
-.janji li { padding:26px 0; border-bottom:2px solid rgba(255,255,255,.13); }
-.janji li:last-child { border-bottom:0; }
-.janji b { display:block; font-size:32px; font-weight:800; letter-spacing:-.02em; color:#fff; margin-bottom:6px; }
-.janji span { font-size:24px; color:var(--d-muted); }
-
-.tutup {
-  margin-top:auto;
-  background:rgba(255,255,255,.07); border:2px solid rgba(255,255,255,.16);
-  border-radius:34px; padding:34px 38px;
-  display:flex; align-items:center; gap:28px;
+.spek { margin-top:40px; list-style:none; padding:0; display:flex; flex-direction:column; gap:0; }
+.spek li {
+  display:flex; align-items:baseline; gap:26px;
+  padding:22px 0; border-bottom:2px solid var(--garis);
 }
-.tutup img { width:76px; height:76px; border-radius:22px; flex:none; }
-.tutup .t { flex:1; }
-.tutup .t b { display:block; font-size:32px; font-weight:800; letter-spacing:-.02em; color:#fff; }
-.tutup .t span { display:block; font-size:22px; color:var(--d-muted); margin-top:6px; line-height:1.4; }
-.tutup .cta {
-  flex:none; font-size:26px; font-weight:800; color:#06251A; white-space:nowrap;
-  background:linear-gradient(135deg,var(--mint),var(--green-400));
+.spek li:last-child { border-bottom:0; }
+.spek b {
+  flex:none; width:290px; font-size:22px; font-weight:800; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--kuning);
+}
+.spek span { font-size:23px; line-height:1.45; color:var(--ink-2); }
+
+.cta {
+  margin-top:auto;
+  background:linear-gradient(135deg, rgba(255,90,20,.20), rgba(32,4,4,.6));
+  border:2px solid rgba(255,180,120,.34);
+  border-radius:30px; padding:34px 38px;
+  display:flex; align-items:center; gap:30px;
+}
+.cta .t { flex:1; }
+.cta .t b {
+  display:block; font-size:26px; font-weight:800; letter-spacing:.01em;
+  text-transform:uppercase; color:#fff;
+}
+.cta .t span { display:block; font-size:22px; color:var(--ink-2); margin-top:7px; line-height:1.45; }
+.cta .tombol {
+  flex:none; font-size:24px; font-weight:800; letter-spacing:.06em; text-transform:uppercase;
+  color:#2A0404; white-space:nowrap;
+  background:linear-gradient(135deg,var(--kuning-2),var(--kuning));
   padding:22px 32px; border-radius:999px;
-  box-shadow:0 14px 30px rgba(31,208,138,.3);
+  box-shadow:0 14px 34px rgba(255,170,30,.34);
 }
 </style>
 </head>
 <body>
 
 <!-- ==================================================== 1 — SAMPUL ======== -->
-<section class="slide dark s1">
+<section class="slide s1">
   <div class="top">
-    <div class="brand"><img src="../../img/icon.svg" alt=""><span>Duitku</span></div>
-    <div class="count">01 / 05</div>
+    <div class="mark">
+      <span class="glif"></span>
+      <span class="baris">
+        <span class="atas">Project File</span>
+        <span class="bawah">by <b>Yubuilds</b></span>
+      </span>
+    </div>
+    <div class="count"><i></i> 01 / 05</div>
   </div>
 
   <div class="teks">
-    <p class="kicker">Pencatat keuangan &amp; hutang</p>
-    <h1>Catat keuanganmu.<br><em>Tagih hutangmu</em><br>tanpa canggung.</h1>
-    <p class="lead">Aplikasi keuangan pribadi yang sekaligus menyiapkan pesan penagihan hutangmu di WhatsApp — tinggal kamu kirim.</p>
+    <p class="kicker">Studi kasus · Aplikasi keuangan</p>
+    <h1>Catat keuangan.<br><em>Tagih hutang.</em><br>Satu aplikasi.</h1>
+    <p class="lead">Duitku — pencatat keuangan pribadi yang sekaligus menyiapkan pesan penagihan hutang di WhatsApp, lengkap dengan nominal dan sisanya.</p>
   </div>
 
   <div class="phone">
-    <div class="bezel"><img src="src/beranda.webp" alt="Beranda Duitku"></div>
+    <div class="bezel"><img src="src/beranda.webp" alt="Beranda aplikasi Duitku"></div>
   </div>
 
-  <div class="swipe">Geser untuk kenalan <b>→</b></div>
+  <div class="scrim"></div>
+  <div class="swipe">Geser untuk lihat <b>→</b></div>
+
+  <div class="rel">
+    <span class="alur">Idea <b>→</b> System <b>→</b> App</span>
+    <span>Duitku · Personal Finance</span>
+  </div>
 </section>
 
 <!-- ================================================== 2 — MASALAHNYA ====== -->
 <section class="slide s2">
   <div class="top">
-    <div class="brand"><img src="../../img/icon.svg" alt=""><span>Duitku</span></div>
-    <div class="count">02 / 05</div>
+    <div class="mark">
+      <span class="glif"></span>
+      <span class="baris">
+        <span class="atas">Project File</span>
+        <span class="bawah">by <b>Yubuilds</b></span>
+      </span>
+    </div>
+    <div class="count"><i></i> 02 / 05</div>
   </div>
 
   <div class="teks">
-    <p class="kicker">Kenapa ini dibuat</p>
+    <p class="kicker">Masalah yang dipecahkan</p>
     <h2>Uang keluar tiap hari.<br>Hutang tercatat di kepala.</h2>
   </div>
 
@@ -248,7 +341,7 @@ em { font-style:normal;
       <div class="no">01</div>
       <div>
         <h3>Catatan berhenti di minggu kedua</h3>
-        <p>Aplikasi keuangan lain minta daftar akun dan punya belasan menu sebelum kamu sempat mencatat satu pengeluaran.</p>
+        <p>Aplikasi keuangan lain minta daftar akun dan punya belasan menu sebelum pengguna sempat mencatat satu pengeluaran.</p>
       </div>
     </article>
     <article>
@@ -266,18 +359,29 @@ em { font-style:normal;
       </div>
     </article>
   </div>
+
+  <div class="rel">
+    <span class="alur">Idea <b>→</b> System <b>→</b> App</span>
+    <span>Duitku · Personal Finance</span>
+  </div>
 </section>
 
-<!-- ================================================ 3 — FUNGSI UTAMA ====== -->
-<section class="slide dark s3">
+<!-- ================================================== 3 — FITUR INTI ====== -->
+<section class="slide s3">
   <div class="top">
-    <div class="brand"><img src="../../img/icon.svg" alt=""><span>Duitku</span></div>
-    <div class="count">03 / 05</div>
+    <div class="mark">
+      <span class="glif"></span>
+      <span class="baris">
+        <span class="atas">Project File</span>
+        <span class="bawah">by <b>Yubuilds</b></span>
+      </span>
+    </div>
+    <div class="count"><i></i> 03 / 05</div>
   </div>
 
   <div class="teks">
-    <p class="kicker">Fungsi utamanya</p>
-    <h2>Satu tombol, pesan<br>penagihannya sudah jadi.</h2>
+    <p class="kicker">Fitur inti</p>
+    <h2>Satu tombol, pesan<br>penagihannya <em>sudah jadi.</em></h2>
   </div>
 
   <div class="isi">
@@ -292,7 +396,7 @@ em { font-style:normal;
       </li>
       <li>
         <b>Angkanya diisi sendiri</b>
-        <span>Nominal, sisa yang belum dibayar, dan umur hutang — “sudah 3 bulan 5 hari” — tanpa kamu hitung.</span>
+        <span>Nominal, sisa yang belum dibayar, dan umur hutang — “sudah 3 bulan 5 hari” — tanpa dihitung manual.</span>
       </li>
     </ol>
 
@@ -303,31 +407,42 @@ em { font-style:normal;
 
   <div class="catatan">
     <span>🔒</span>
-    <span><b>Kamu tetap yang menekan kirim.</b> Duitku hanya membuka WhatsApp dengan pesan yang sudah terisi, jadi tidak ada pesan yang keluar tanpa sepengetahuanmu.</span>
+    <span><b>Penggunanya tetap yang menekan kirim.</b> Aplikasinya hanya membuka WhatsApp dengan pesan yang sudah terisi — tidak ada pesan yang keluar diam-diam.</span>
+  </div>
+
+  <div class="rel">
+    <span class="alur">Idea <b>→</b> System <b>→</b> App</span>
+    <span>Duitku · Personal Finance</span>
   </div>
 </section>
 
-<!-- =================================================== 4 — KEGUNAAN ======= -->
+<!-- ================================================ 4 — ISI APLIKASINYA === -->
 <section class="slide s4">
   <div class="top">
-    <div class="brand"><img src="../../img/icon.svg" alt=""><span>Duitku</span></div>
-    <div class="count">04 / 05</div>
+    <div class="mark">
+      <span class="glif"></span>
+      <span class="baris">
+        <span class="atas">Project File</span>
+        <span class="bawah">by <b>Yubuilds</b></span>
+      </span>
+    </div>
+    <div class="count"><i></i> 04 / 05</div>
   </div>
 
   <div class="teks">
-    <p class="kicker">Kegunaan sehari-hari</p>
+    <p class="kicker">Isi aplikasinya</p>
     <h2>Bukan cuma buat menagih.</h2>
-    <p class="lead">Pemasukan dan pengeluaranmu tercatat rapi, anggaran terpantau, dan angkanya bisa kamu tanyakan langsung.</p>
+    <p class="lead">Pemasukan dan pengeluaran tercatat rapi, anggaran terpantau, dan angkanya bisa langsung ditanyakan.</p>
   </div>
 
   <div class="deret">
     <figure>
       <div class="phone"><div class="bezel"><img src="src/laporan.webp" alt="Laporan bulanan Duitku"></div></div>
-      <figcaption>Laporan &amp; grafik<small>Ke mana uangmu pergi</small></figcaption>
+      <figcaption>Laporan &amp; grafik<small>Ke mana uangnya pergi</small></figcaption>
     </figure>
     <figure>
       <div class="phone"><div class="bezel"><img src="src/anggaran.webp" alt="Anggaran bulanan Duitku"></div></div>
-      <figcaption>Anggaran bulanan<small>Dijaga sebelum jebol</small></figcaption>
+      <figcaption>Anggaran<small>Dijaga sebelum jebol</small></figcaption>
     </figure>
     <figure>
       <div class="phone"><div class="bezel"><img src="src/asisten.webp" alt="Asisten keuangan Duitku"></div></div>
@@ -339,34 +454,50 @@ em { font-style:normal;
     <span>Multi-dompet</span><span>22 kategori</span><span>Cicilan &amp; jatuh tempo</span>
     <span>Laporan PDF</span><span>Sinkron Google Sheets</span><span>Mode gelap</span>
   </div>
+
+  <div class="rel">
+    <span class="alur">Idea <b>→</b> System <b>→</b> App</span>
+    <span>Duitku · Personal Finance</span>
+  </div>
 </section>
 
-<!-- ==================================================== 5 — PRIVASI ======= -->
-<section class="slide dark s5">
+<!-- =================================================== 5 — PENUTUP ======== -->
+<section class="slide s5">
   <div class="top">
-    <div class="brand"><img src="../../img/icon.svg" alt=""><span>Duitku</span></div>
-    <div class="count">05 / 05</div>
+    <div class="mark">
+      <span class="glif"></span>
+      <span class="baris">
+        <span class="atas">Project File</span>
+        <span class="bawah">by <b>Yubuilds</b></span>
+      </span>
+    </div>
+    <div class="count"><i></i> 05 / 05</div>
   </div>
 
   <div class="teks">
-    <p class="kicker">Dan yang paling penting</p>
-    <h2>Datamu tidak<br>ke mana-mana.</h2>
-    <p class="lead">Catatan hutang memuat nama dan nomor WhatsApp orang lain. Karena itu Duitku sengaja dibuat tanpa server sama sekali.</p>
+    <p class="kicker">Dari ide jadi aplikasi</p>
+    <h2>Setiap proses manual<br>bisa dijadikan <em>sistem.</em></h2>
+    <p class="lead">Duitku berangkat dari satu keluhan sederhana — sungkan menagih — lalu dibongkar jadi alur, lalu jadi aplikasi yang dipakai tiap hari.</p>
   </div>
 
-  <ul class="janji">
-    <li><b>Tanpa akun</b><span>Tidak ada pendaftaran, tidak ada email, tidak ada kata sandi.</span></li>
-    <li><b>Tanpa server</b><span>Semua catatanmu tersimpan di penyimpanan perangkatmu sendiri.</span></li>
-    <li><b>Tetap jalan offline</b><span>Termasuk asisten keuangannya, karena semua dihitung di perangkat.</span></li>
+  <ul class="spek">
+    <li><b>React + TypeScript</b><span>Aplikasi web (PWA) yang bisa dipasang di layar utama HP.</span></li>
+    <li><b>Capacitor</b><span>Satu basis kode melayani web dan aplikasi Android sekaligus.</span></li>
+    <li><b>Tanpa server</b><span>Data tersimpan di perangkat pengguna dan tetap jalan offline.</span></li>
+    <li><b>Google Sheets</b><span>Sinkronisasi ke spreadsheet milik pengguna lewat Apps Script.</span></li>
   </ul>
 
-  <div class="tutup">
-    <img src="../../img/icon.svg" alt="">
+  <div class="cta">
     <div class="t">
-      <b>Duitku</b>
-      <span>Cocok untuk pekerja harian, pemilik warung, pengurus arisan — siapa pun yang sering menalangi dulu.</span>
+      <b>Punya proses yang masih manual?</b>
+      <span>Ceritakan alurnya — nanti kita bongkar bareng dan cari bentuk sistemnya.</span>
     </div>
-    <div class="cta">Link di bio</div>
+    <div class="tombol">DM @yubuilds</div>
+  </div>
+
+  <div class="rel">
+    <span class="alur">Idea <b>→</b> System <b>→</b> App</span>
+    <span>Duitku · Personal Finance</span>
   </div>
 </section>
 
