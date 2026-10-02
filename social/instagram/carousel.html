@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Duitku — Carousel Instagram</title>
+<link rel="stylesheet" href="../../css/fonts.css">
+<style>
+/* ==========================================================================
+   Duitku — Carousel Instagram · 5 slide · 1080 × 1350 px (rasio 4:5)
+
+   Palet, radius, dan bayangannya menyalin design system aplikasi
+   (duitkurapi/src/index.css) supaya satu nada dengan aplikasinya.
+
+   Setiap <section class="slide"> difoto satu per satu oleh render.mjs.
+   Tata letaknya memakai aliran flex — elemen bawah dipaksa turun dengan
+   margin-top:auto, bukan diposisikan absolut — supaya isi slide tidak
+   mungkin saling menimpa kalau teksnya nanti diubah panjangnya.
+   ========================================================================== */
+
+:root {
+  --green-300:#6FD9A8; --green-400:#35C98A; --green-500:#12996B;
+  --green-600:#0E8159; --green-700:#0B6746;
+  --mint:#1FD08A;
+
+  --bg:#F3F8F5; --surface:#FFFFFF; --border:#E2EDE7;
+  --text:#0E2A20; --muted:#52705F; --faint:#8AA698;
+
+  --d-text:#EAF7F0; --d-muted:#A8CDBB; --d-faint:#82B39A;
+
+  --pad:84px;
+  --font:'Plus Jakarta Sans','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+}
+
+*,*::before,*::after { box-sizing:border-box; }
+body { margin:0; background:#4d5853; font-family:var(--font); -webkit-font-smoothing:antialiased; }
+img { display:block; max-width:100%; height:auto; }
+
+.slide {
+  position:relative; width:1080px; height:1350px; overflow:hidden;
+  padding:var(--pad);
+  display:flex; flex-direction:column;
+  background:var(--bg); color:var(--text);
+  margin:0 auto 40px;
+}
+
+.slide.dark {
+  color:var(--d-text);
+  background:
+    radial-gradient(58% 46% at 86% 4%, rgba(31,208,138,.22), transparent 64%),
+    radial-gradient(52% 40% at 6% 96%, rgba(14,165,160,.16), transparent 68%),
+    linear-gradient(158deg,#0C3E2C 0%,#07291C 54%,#041710 100%);
+}
+
+/* ------------------------------------------------------------- kop slide --- */
+.top { display:flex; align-items:center; justify-content:space-between; flex:none; }
+.brand { display:flex; align-items:center; gap:16px; }
+.brand img { width:62px; height:62px; border-radius:17px; }
+.brand span { font-size:38px; font-weight:800; letter-spacing:-.025em; }
+.count { font-size:22px; font-weight:800; letter-spacing:.14em; color:var(--faint); }
+.dark .count { color:var(--d-faint); }
+
+/* ------------------------------------------------------------- tipografi --- */
+.kicker {
+  margin:0; font-size:23px; font-weight:800; letter-spacing:.17em;
+  text-transform:uppercase; color:var(--green-500);
+}
+.dark .kicker { color:var(--green-300); }
+
+h1,h2 { margin:0; font-weight:800; letter-spacing:-.032em; line-height:1.07; text-wrap:balance; }
+h1 { font-size:80px; }
+h2 { font-size:66px; }
+em { font-style:normal;
+     background:linear-gradient(104deg,var(--green-400),var(--mint) 52%,var(--green-300));
+     -webkit-background-clip:text; background-clip:text; color:transparent; }
+.dark h1, .dark h2 { color:#fff; }
+
+.lead { margin:0; font-size:31px; line-height:1.52; color:var(--muted); }
+.dark .lead { color:var(--d-muted); }
+
+/* ---------------------------------------------------------------- ponsel --- */
+.phone .bezel {
+  padding:11px; border-radius:52px;
+  background:linear-gradient(160deg,#283D33,#0A120E 68%);
+  box-shadow:0 40px 90px rgba(0,0,0,.34), 0 0 0 2px rgba(255,255,255,.10) inset;
+}
+.phone .bezel img { border-radius:42px; }
+.dark .phone .bezel { box-shadow:0 44px 100px rgba(0,0,0,.55), 0 0 0 2px rgba(255,255,255,.12) inset; }
+
+/* ===================================================== SLIDE 1 — sampul === */
+.s1 .teks { margin-top:88px; }
+.s1 h1 { margin-top:28px; }
+.s1 .lead { margin-top:32px; max-width:620px; }
+
+/* Ponsel ditaruh di kanan dan dibiarkan terpotong tepi bawah; sisi kiri
+   dibiarkan lapang supaya pil "Geser" tidak pernah tertimpa. */
+.s1 .phone {
+  align-self:flex-end; margin-top:62px; margin-right:-76px;
+  width:452px; transform:rotate(-5deg); transform-origin:top center;
+}
+
+.s1 .swipe {
+  position:absolute; left:var(--pad); bottom:var(--pad);
+  display:inline-flex; align-items:center; gap:16px;
+  font-size:26px; font-weight:700; color:var(--d-text);
+  background:rgba(255,255,255,.09); border:2px solid rgba(255,255,255,.18);
+  padding:18px 34px; border-radius:999px;
+}
+.s1 .swipe b { font-size:30px; color:var(--mint); }
+
+/* ================================================== SLIDE 2 — masalahnya === */
+.s2 .teks { margin-top:80px; }
+.s2 h2 { margin-top:26px; }
+
+.poin { flex:1; display:flex; flex-direction:column; justify-content:center; gap:28px; }
+.poin article {
+  display:flex; gap:28px; align-items:flex-start;
+  background:var(--surface); border:2px solid var(--border);
+  border-radius:30px; padding:34px 36px;
+  box-shadow:0 10px 30px rgba(9,45,32,.05);
+}
+.poin .no {
+  flex:none; width:62px; height:62px; border-radius:20px;
+  display:grid; place-items:center;
+  font-size:25px; font-weight:800; color:#fff;
+  background:linear-gradient(135deg,var(--green-400),var(--green-600));
+  box-shadow:0 10px 22px rgba(18,153,107,.3);
+}
+.poin h3 { margin:0 0 8px; font-size:33px; font-weight:800; letter-spacing:-.02em; }
+.poin p  { margin:0; font-size:25px; line-height:1.5; color:var(--muted); }
+
+/* ============================================== SLIDE 3 — fungsi utama ===== */
+.s3 .teks { margin-top:56px; }
+.s3 h2 { margin-top:20px; font-size:56px; }
+
+.s3 .isi { margin-top:44px; display:flex; gap:44px; align-items:flex-start; }
+
+.langkah { counter-reset:l; list-style:none; margin:0; padding:0; flex:1; }
+.langkah li { position:relative; padding-left:72px; margin-bottom:38px; }
+.langkah li:last-child { margin-bottom:0; }
+.langkah li::before {
+  content:counter(l); counter-increment:l;
+  position:absolute; left:0; top:-2px;
+  width:52px; height:52px; border-radius:50%;
+  display:grid; place-items:center;
+  font-size:23px; font-weight:800; color:#06251A;
+  background:linear-gradient(135deg,var(--mint),var(--green-400));
+  box-shadow:0 10px 24px rgba(31,208,138,.34);
+}
+.langkah b { display:block; font-size:28px; font-weight:800; letter-spacing:-.02em; color:#fff; margin-bottom:8px; }
+.langkah span { display:block; font-size:23px; line-height:1.5; color:var(--d-muted); }
+
+.s3 .phone { flex:none; width:300px; }
+
+.catatan {
+  margin-top:auto;
+  display:flex; gap:22px; align-items:flex-start;
+  background:rgba(255,255,255,.07); border:2px solid rgba(255,255,255,.14);
+  border-radius:26px; padding:28px 32px;
+  font-size:23px; line-height:1.45; color:var(--d-muted);
+}
+.catatan b { color:#fff; font-weight:800; }
+
+/* ================================================ SLIDE 4 — kegunaan ======= */
+.s4 .teks { margin-top:70px; }
+.s4 h2 { margin-top:22px; }
+.s4 .lead { margin-top:22px; max-width:820px; font-size:29px; }
+
+.deret { margin-top:48px; display:flex; gap:32px; justify-content:space-between; }
+.deret figure { margin:0; width:240px; }
+.deret figcaption {
+  margin-top:22px; text-align:center;
+  font-size:24px; font-weight:800; letter-spacing:-.01em; color:var(--text);
+}
+.deret small { display:block; font-weight:600; color:var(--faint); font-size:21px; margin-top:4px; }
+
+.chips { margin-top:auto; display:flex; flex-wrap:wrap; gap:13px; justify-content:center; }
+.chips span {
+  font-size:23px; font-weight:700; color:var(--green-600);
+  background:var(--surface); border:2px solid var(--border);
+  padding:13px 24px; border-radius:999px;
+}
+
+/* ================================================== SLIDE 5 — privasi ===== */
+.s5 .teks { margin-top:72px; }
+.s5 h2 { margin-top:24px; }
+.s5 .lead { margin-top:28px; max-width:800px; }
+
+.janji { margin-top:44px; list-style:none; padding:0; }
+.janji li { padding:26px 0; border-bottom:2px solid rgba(255,255,255,.13); }
+.janji li:last-child { border-bottom:0; }
+.janji b { display:block; font-size:32px; font-weight:800; letter-spacing:-.02em; color:#fff; margin-bottom:6px; }
+.janji span { font-size:24px; color:var(--d-muted); }
+
+.tutup {
+  margin-top:auto;
+  background:rgba(255,255,255,.07); border:2px solid rgba(255,255,255,.16);
+  border-radius:34px; padding:34px 38px;
+  display:flex; align-items:center; gap:28px;
+}
+.tutup img { width:76px; height:76px; border-radius:22px; flex:none; }
+.tutup .t { flex:1; }
+.tutup .t b { display:block; font-size:32px; font-weight:800; letter-spacing:-.02em; color:#fff; }
+.tutup .t span { display:block; font-size:22px; color:var(--d-muted); margin-top:6px; line-height:1.4; }
+.tutup .cta {
+  flex:none; font-size:26px; font-weight:800; color:#06251A; white-space:nowrap;
+  background:linear-gradient(135deg,var(--mint),var(--green-400));
+  padding:22px 32px; border-radius:999px;
+  box-shadow:0 14px 30px rgba(31,208,138,.3);
+}
+</style>
+</head>
+<body>
+
+<!-- ==================================================== 1 — SAMPUL ======== -->
+<section class="slide dark s1">
+  <div class="top">
+    <div class="brand"><img src="../../img/icon.svg" alt=""><span>Duitku</span></div>
+    <div class="count">01 / 05</div>
+  </div>
+
+  <div class="teks">
+    <p class="kicker">Pencatat keuangan &amp; hutang</p>
+    <h1>Catat keuanganmu.<br><em>Tagih hutangmu</em><br>tanpa canggung.</h1>
+    <p class="lead">Aplikasi keuangan pribadi yang sekaligus menyiapkan pesan penagihan hutangmu di WhatsApp — tinggal kamu kirim.</p>
+  </div>
+
+  <div class="phone">
+    <div class="bezel"><img src="src/beranda.webp" alt="Beranda Duitku"></div>
+  </div>
+
+  <div class="swipe">Geser untuk kenalan <b>→</b></div>
+</section>
+
+<!-- ================================================== 2 — MASALAHNYA ====== -->
+<section class="slide s2">
+  <div class="top">
+    <div class="brand"><img src="../../img/icon.svg" alt=""><span>Duitku</span></div>
+    <div class="count">02 / 05</div>
+  </div>
+
+  <div class="teks">
+    <p class="kicker">Kenapa ini dibuat</p>
+    <h2>Uang keluar tiap hari.<br>Hutang tercatat di kepala.</h2>
+  </div>
+
+  <div class="poin">
+    <article>
+      <div class="no">01</div>
+      <div>
+        <h3>Catatan berhenti di minggu kedua</h3>
+        <p>Aplikasi keuangan lain minta daftar akun dan punya belasan menu sebelum kamu sempat mencatat satu pengeluaran.</p>
+      </div>
+    </article>
+    <article>
+      <div class="no">02</div>
+      <div>
+        <h3>Lupa siapa pinjam berapa</h3>
+        <p>Hutang dicatat di Notes, di chat yang ketimbun, atau cuma diingat. Pas mau ditagih, angkanya sendiri sudah tidak yakin.</p>
+      </div>
+    </article>
+    <article>
+      <div class="no">03</div>
+      <div>
+        <h3>Menagih itu canggung</h3>
+        <p>Mengetik ulang pesannya dari nol tiap kali, memikirkan nada yang pas biar tidak menyinggung, ujungnya ditunda sampai lupa.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ================================================ 3 — FUNGSI UTAMA ====== -->
+<section class="slide dark s3">
+  <div class="top">
+    <div class="brand"><img src="../../img/icon.svg" alt=""><span>Duitku</span></div>
+    <div class="count">03 / 05</div>
+  </div>
+
+  <div class="teks">
+    <p class="kicker">Fungsi utamanya</p>
+    <h2>Satu tombol, pesan<br>penagihannya sudah jadi.</h2>
+  </div>
+
+  <div class="isi">
+    <ol class="langkah">
+      <li>
+        <b>Simpan nomor WhatsApp-nya</b>
+        <span>Ditulis dengan format apa pun — 0812, +62, atau 812 — semuanya dirapikan otomatis.</span>
+      </li>
+      <li>
+        <b>Pilih nada pesannya</b>
+        <span>Halus, tegas, pengingat jatuh tempo, tawaran cicilan, atau ucapan terima kasih.</span>
+      </li>
+      <li>
+        <b>Angkanya diisi sendiri</b>
+        <span>Nominal, sisa yang belum dibayar, dan umur hutang — “sudah 3 bulan 5 hari” — tanpa kamu hitung.</span>
+      </li>
+    </ol>
+
+    <div class="phone">
+      <div class="bezel"><img src="src/tagih.webp" alt="Panel penagihan WhatsApp di Duitku"></div>
+    </div>
+  </div>
+
+  <div class="catatan">
+    <span>🔒</span>
+    <span><b>Kamu tetap yang menekan kirim.</b> Duitku hanya membuka WhatsApp dengan pesan yang sudah terisi, jadi tidak ada pesan yang keluar tanpa sepengetahuanmu.</span>
+  </div>
+</section>
+
+<!-- =================================================== 4 — KEGUNAAN ======= -->
+<section class="slide s4">
+  <div class="top">
+    <div class="brand"><img src="../../img/icon.svg" alt=""><span>Duitku</span></div>
+    <div class="count">04 / 05</div>
+  </div>
+
+  <div class="teks">
+    <p class="kicker">Kegunaan sehari-hari</p>
+    <h2>Bukan cuma buat menagih.</h2>
+    <p class="lead">Pemasukan dan pengeluaranmu tercatat rapi, anggaran terpantau, dan angkanya bisa kamu tanyakan langsung.</p>
+  </div>
+
+  <div class="deret">
+    <figure>
+      <div class="phone"><div class="bezel"><img src="src/laporan.webp" alt="Laporan bulanan Duitku"></div></div>
+      <figcaption>Laporan &amp; grafik<small>Ke mana uangmu pergi</small></figcaption>
+    </figure>
+    <figure>
+      <div class="phone"><div class="bezel"><img src="src/anggaran.webp" alt="Anggaran bulanan Duitku"></div></div>
+      <figcaption>Anggaran bulanan<small>Dijaga sebelum jebol</small></figcaption>
+    </figure>
+    <figure>
+      <div class="phone"><div class="bezel"><img src="src/asisten.webp" alt="Asisten keuangan Duitku"></div></div>
+      <figcaption>Asisten keuangan<small>Tanya, langsung dijawab</small></figcaption>
+    </figure>
+  </div>
+
+  <div class="chips">
+    <span>Multi-dompet</span><span>22 kategori</span><span>Cicilan &amp; jatuh tempo</span>
+    <span>Laporan PDF</span><span>Sinkron Google Sheets</span><span>Mode gelap</span>
+  </div>
+</section>
+
+<!-- ==================================================== 5 — PRIVASI ======= -->
+<section class="slide dark s5">
+  <div class="top">
+    <div class="brand"><img src="../../img/icon.svg" alt=""><span>Duitku</span></div>
+    <div class="count">05 / 05</div>
+  </div>
+
+  <div class="teks">
+    <p class="kicker">Dan yang paling penting</p>
+    <h2>Datamu tidak<br>ke mana-mana.</h2>
+    <p class="lead">Catatan hutang memuat nama dan nomor WhatsApp orang lain. Karena itu Duitku sengaja dibuat tanpa server sama sekali.</p>
+  </div>
+
+  <ul class="janji">
+    <li><b>Tanpa akun</b><span>Tidak ada pendaftaran, tidak ada email, tidak ada kata sandi.</span></li>
+    <li><b>Tanpa server</b><span>Semua catatanmu tersimpan di penyimpanan perangkatmu sendiri.</span></li>
+    <li><b>Tetap jalan offline</b><span>Termasuk asisten keuangannya, karena semua dihitung di perangkat.</span></li>
+  </ul>
+
+  <div class="tutup">
+    <img src="../../img/icon.svg" alt="">
+    <div class="t">
+      <b>Duitku</b>
+      <span>Cocok untuk pekerja harian, pemilik warung, pengurus arisan — siapa pun yang sering menalangi dulu.</span>
+    </div>
+    <div class="cta">Link di bio</div>
+  </div>
+</section>
+
+</body>
+</html>
